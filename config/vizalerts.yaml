@@ -1,0 +1,57 @@
+# Local paths settings
+log.dir: ".\\logs\\"                            # folder write dump log files to. Will be created if it does not exist.
+log.dir.file_retention_seconds: 432000          # retain log files for default of 5 days
+log.level: DEBUG                                # level of log verbosity
+schedule.state.dir: ".\\ops\\"                  # file written to keep the last run state for schedules
+temp.dir: ".\\temp\\"                           # folder to write temporary files to (csv, png for viz exports). Will be created if it does not exist.
+temp.dir.file_retention_seconds: 86400          # retain temp files for default of 24 hours, mostly for debugging
+
+# Email settings
+smtp.serv: smtp.gmail.com                            # name of the smtp mail server (change for production use; default is only set to "localhost" for ease of testing with PaperCut: https://papercut.codeplex.com/)
+smtp.port: 587                                   # port to user for SMTP server (default is 25)
+smtp.address.from: ebishekc@gmail.com     # default sender for all alerts mail
+smtp.address.to: chauhan.abhishek335@gmail.com     # email address of admin to send failures to
+
+smtp.subject: 'ALERT: VizAlerts failed to execute properly'  # subject line in exception emails sent to admin
+smtp.ssl: false                                 # use encryption when connecting to SMTP server
+smtp.user: ebishekc@gmail                                 # username for account used to connect to SMTP server (null for no authentication)
+smtp.password: rhfpphnpnqabtrze                             # password for account used to connect to SMTP server (null for no authentication)
+                                                    # This can either be a plaintext password enclosed in single quotes, e.g. 'myp@ssw0rd'
+                                                    # OR it can be a valid path to a .txt file containing the password, e.g. 'c:\users\mcoles\password.txt'
+# Tableau Server settings
+server: 34.125.242.67                               # the Tableau Server instance your alerts will reside on. Recommend using the fully-qualified name, e.g. 'myserver.mydomain.com'
+                                                    # If your server runs on a non-default port, add a colon and the port number, e.g., "myserver.mydomain.com:54321"
+server.version: 10                              # the major version of Tableau Server that this is running against (just ensures correct URLs in email footers)
+server.user: admin              # this is ANY user licensed in Tableau Server--it does not need to be an Admin. It must have access to download summary data from vizalerts.source.viz
+server.user.domain: null                        # the domain for the server.user account.
+                                                  # Leave as null (no quotes) if Tableau Server uses local authentication
+                                                  # Set to the domain if using AD authentication, e.g. 'mycompany.com'
+vizalerts.source.viz: 'VizAlertsConfig/ScheduledTriggerViews'     # Viz to pull list of alerts from. Must be of the form 'WorkbookURL/ViewUrl'
+vizalerts.source.site: 'Default'                # Site that the vizalerts.source.viz exists within. Leave as 'Default' if using the default site.
+
+# Security settings
+server.ssl: false                               # use HTTPS for Server connections (recommended, but left off by default for testing)
+server.certcheck: false                         # if using HTTPS, validate the certificate (recommended, but left off by default for testing)
+                                                   # If you turn this on you MUST specify a certificate bundle in server.certfile
+server.certfile: null                           # Full path to the set of trusted CA certificates to verify your SSL certificate on Tableau Server in .pem format
+                                                    # example: 'c:\\certificates\\cacert.pem'
+trusted.useclientip: false                      # use clientip for trusted tickets verification
+                                                    # This is optional. Please see http://onlinehelp.tableausoftware.com/current/server/en-us/trusted_auth_optional.htm
+trusted.clientip: null                          # IP address of THIS host. Only needed if trusted.useclientip is set to true. Otherwise, just leave it null.
+
+# SMS Settings
+smsaction.enable: false                         # use these settings to enable SMS messages. If false, we won't even check them, and all SMS attempts will fail
+smsaction.provider: twilio                      # the only allowed provider currently is twilio
+smsaction.account_id: ''                        # account ID, for Twilio this is the account SID from http://twilio.com/user/account
+smsaction.auth_token: ''                        # auth token, for Twilio http://twilio.com/user/account
+                                                    # This can either be a plaintext password enclosed in quotes, e.g. 'eyJ0eXAiOiJKV1QiLCJhbGciO...'
+                                                    # OR it can be a valid path to a .txt file containing the auth token, e.g. 'c:\users\mcoles\authtoken.txt'
+
+# Processing settings
+threads: 2                                      # Number of threads VizAlerts will use to process alerts
+                                                     # Higher = More alerts process at once, increased server load
+                                                     # Lower = Fewer alerts processed at once, decreased server load
+                                                     # Content references within a single alert are processed serially
+
+data.coldelimiter: ','                          # Character used to separate field values in CSV files exported from Tableau Server
+                                                     # Some regions use semicolons for this, in which case switch it to ';'
