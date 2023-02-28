@@ -81,7 +81,7 @@ def main():
         args = parser.parse_args()
 
         # validate and load configs from yaml file
-        configfile = '.\\config\\vizalerts.yaml'
+        configfile = './/config//vizalerts.yaml'
         if args.configpath is not None:
             configfile = args.configpath
 

@@ -1,9 +1,9 @@
 # Local paths settings
-log.dir: ".\\logs\\"                            # folder write dump log files to. Will be created if it does not exist.
+log.dir: ".//logs//"                            # folder write dump log files to. Will be created if it does not exist.
 log.dir.file_retention_seconds: 432000          # retain log files for default of 5 days
 log.level: DEBUG                                # level of log verbosity
-schedule.state.dir: ".\\ops\\"                  # file written to keep the last run state for schedules
-temp.dir: ".\\temp\\"                           # folder to write temporary files to (csv, png for viz exports). Will be created if it does not exist.
+schedule.state.dir: ".//ops//"                  # file written to keep the last run state for schedules
+temp.dir: ".//temp//"                           # folder to write temporary files to (csv, png for viz exports). Will be created if it does not exist.
 temp.dir.file_retention_seconds: 86400          # retain temp files for default of 24 hours, mostly for debugging
 
 # Email settings
@@ -19,7 +19,7 @@ smtp.password: rhfpphnpnqabtrze                             # password for accou
                                                     # This can either be a plaintext password enclosed in single quotes, e.g. 'myp@ssw0rd'
                                                     # OR it can be a valid path to a .txt file containing the password, e.g. 'c:\users\mcoles\password.txt'
 # Tableau Server settings
-server: 34.125.242.67                               # the Tableau Server instance your alerts will reside on. Recommend using the fully-qualified name, e.g. 'myserver.mydomain.com'
+server: 34.126.210.40                               # the Tableau Server instance your alerts will reside on. Recommend using the fully-qualified name, e.g. 'myserver.mydomain.com'
                                                     # If your server runs on a non-default port, add a colon and the port number, e.g., "myserver.mydomain.com:54321"
 server.version: 10                              # the major version of Tableau Server that this is running against (just ensures correct URLs in email footers)
 server.user: admin              # this is ANY user licensed in Tableau Server--it does not need to be an Admin. It must have access to download summary data from vizalerts.source.viz
